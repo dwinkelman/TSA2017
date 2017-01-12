@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/menu_goto_sets"></item>
+    <item android:title="@string/menu_goto_lookup"></item>
+    <item android:title="@string/menu_goto_settings"></item>
+    <item android:title="@string/menu_export"></item>
+</menu>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Language Palace</string>
+
+
+    <string name="menu_goto_sets">My Sets</string>
+    <string name="menu_goto_lookup">Word Lookup</string>
+    <string name="menu_goto_settings">Settings</string>
+    <string name="menu_export">Export My Data</string>
+
+    <string name="button_new_set">New Set</string>
+    <string name="button_tutorials">Tutorials and Help</string>
+    <string name
+</resources>
