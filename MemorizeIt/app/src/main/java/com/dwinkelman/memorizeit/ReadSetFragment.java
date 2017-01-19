@@ -8,6 +8,9 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +26,15 @@ public class ReadSetFragment extends ListFragment {
 
     // stored values
     private String[][] values;
+
+    // default values
+    private String[][] DEFAULT_VALUES = {
+            {"destacarse", "to stand out"},
+            {"amenazar", "to threaten"},
+            {"el rostro", "face"},
+            {"recientemente", "recently"},
+            {"la pelota", "ball"}
+    };
 
     private OnFragmentInteractionListener mListener;
 
@@ -50,7 +62,18 @@ public class ReadSetFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             values = (String[][])getArguments().getSerializable(ARG_VALUES_LIST);
+        }else{
+            values = DEFAULT_VALUES;
         }
+
+        // use array adapter to instantiate items
+        ListView listView = (ListView) getView().findViewById(R.id.read_set_fragment);
+        final ArrayList<String[]> list = new ArrayList<String[]>();
+        for (String[] val : values) {
+            list.add(val);
+        }
+        final Adapters.ReadSetAdapter adapter = new Adapters.ReadSetAdapter(getActivity(), values);
+        listView.setAdapter(adapter);
     }
 
     @Override
