@@ -53,8 +53,12 @@ public class ReadSetFragment extends ListFragment {
         // set flashcard values
         if (getArguments() != null) {
             Set[] data = (Set[])(getArguments().getSerializable(ARG_SET_OBJECT));
-            if(data.length > 0){
-                set = data[0];
+            if(data != null) {
+                if (data.length > 0) {
+                    set = data[0];
+                } else {
+                    set = new Set();
+                }
             }else{
                 set = new Set();
             }
@@ -109,8 +113,8 @@ public class ReadSetFragment extends ListFragment {
         title.setText(set.getTitle());
         description.setText(set.getDescription());
         // assemble string for details
-        String d = R.string.read_set_created + set.getCreatedString() + "  |  " +
-                set.nTerms() + R.string.read_set_nterms;
+        String d = getString(R.string.read_set_created) + " " + Util.formatDate(set.getCreated()) + "  |  " +
+                set.nTerms() + " " + getString(R.string.read_set_nterms);
         details.setText(d);
     }
 }

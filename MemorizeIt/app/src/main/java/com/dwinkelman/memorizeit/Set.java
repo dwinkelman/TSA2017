@@ -43,9 +43,6 @@ public class Set {
     public Date getCreated(){
         return created;
     }
-    public String getCreatedString(){
-        return created.toString();
-    }
     public String[][] getValues(){
         return values;
     }

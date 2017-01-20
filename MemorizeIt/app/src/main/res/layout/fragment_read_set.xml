@@ -25,6 +25,7 @@
         android:id="@+id/read_set_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:paddingStart="@dimen/small_padding"
         android:paddingLeft="@dimen/small_padding"
         android:paddingRight="@dimen/small_padding"
@@ -50,10 +51,7 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/small_padding"
-        android:paddingRight="@dimen/small_padding"
-        android:paddingStart="@dimen/small_padding">
+        android:layout_height="match_parent">
 
     </ListView>
 

@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/tiny_padding">
 
     <LinearLayout
-        android:id="@+id/column_left"
+        android:id="@+id/readset_card_col_left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="0.5">
+        android:layout_weight="0.5"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginStart="@dimen/small_padding">
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/column_right"
+        android:id="@+id/readset_card_col_right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="0.5">
+        android:layout_weight="0.5"
+        android:layout_marginRight="@dimen/small_padding"
+        android:layout_marginLeft="@dimen/small_padding">
 
     </LinearLayout>
 

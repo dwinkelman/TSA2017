@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Memorize It!</string>
 
-    <string name="read_set_created">Created on </string>
-    <string name="read_set_nterms"> Terms</string>
+    <string name="read_set_created">Created on</string>
+    <string name="read_set_nterms">Terms</string>
+
+    <string name="listsets_title">My Sets</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
