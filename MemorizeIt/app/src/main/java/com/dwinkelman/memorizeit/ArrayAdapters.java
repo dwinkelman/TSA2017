@@ -13,11 +13,11 @@ import android.widget.TextView;
  * Created by Daniel on 1/14/2017.
  */
 
-public class Adapters {
+public class ArrayAdapters {
     public static class ReadSetAdapter extends ArrayAdapter<String[]> {
 
-        private final Context context;
-        private final String[][] values;
+        private Context context;
+        private String[][] values;
 
         // default layout for the TextView containing an individual value
         private LinearLayout.LayoutParams textViewLayout = new LinearLayout.LayoutParams(

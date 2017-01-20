@@ -1,15 +1,16 @@
 package com.dwinkelman.memorizeit;
 
+import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -20,19 +21,10 @@ import java.util.ArrayList;
  */
 public class ReadSetFragment extends ListFragment {
     // parameter names
-    private static final String ARG_VALUES_LIST = "values_list";
+    private static final String ARG_SET_OBJECT = "set";
 
     // stored values
-    private String[][] values;
-
-    // default values
-    private String[][] DEFAULT_VALUES = {
-            {"destacarse", "to stand out"},
-            {"amenazar", "to threaten"},
-            {"el rostro", "face"},
-            {"recientemente", "recently"},
-            {"la pelota", "ball"}
-    };
+    Set set;
 
     public ReadSetFragment() {
         // Required empty public constructor
@@ -42,13 +34,14 @@ public class ReadSetFragment extends ListFragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param values_list 2D of key-value pairs.
+     * @param set The set to create the fragment from.
      * @return A new instance of fragment ReadSetFragment.
      */
-    public static ReadSetFragment newInstance(String[][] values_list) {
+    public static ReadSetFragment newInstance(Set set) {
         ReadSetFragment fragment = new ReadSetFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_VALUES_LIST, values_list);
+        // adding set as an array to avoid having to use parceable
+        args.putSerializable(ARG_SET_OBJECT, new Set[] {set});
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,21 +50,32 @@ public class ReadSetFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(savedInstanceState == null) {
-            if (getArguments() != null) {
-                values = (String[][]) getArguments().getSerializable(ARG_VALUES_LIST);
-            } else {
-                values = DEFAULT_VALUES;
+        // set flashcard values
+        if (getArguments() != null) {
+            Set[] data = (Set[])(getArguments().getSerializable(ARG_SET_OBJECT));
+            if(data.length > 0){
+                set = data[0];
+            }else{
+                set = new Set();
             }
-            attachArrayAdapter();
+        } else {
+            set = new Set();
         }
+
+        // set up the array adapter
+        attachArrayAdapter();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_read_set, container, false);
+        View inflatedView = inflater.inflate(R.layout.fragment_read_set, container, false);
+
+        // adjust text
+        setPropertyText(inflatedView);
+
+        return inflatedView;
     }
 
     @Override
@@ -84,14 +88,29 @@ public class ReadSetFragment extends ListFragment {
         super.onDetach();
     }
 
+    /**
+     * Set up the array adapter so that it sends values into the list designated as android.R.id.list.
+     */
     private void attachArrayAdapter(){
-        // use array adapter to instantiate items
-        final ArrayList<String[]> list = new ArrayList<String[]>();
-        for (String[] val : values) {
-            list.add(val);
-        }
-        final Adapters.ReadSetAdapter adapter = new Adapters.ReadSetAdapter(getActivity(), values);
+        final ArrayAdapters.ReadSetAdapter adapter = new ArrayAdapters.ReadSetAdapter(getActivity(), set.getValues());
         setListAdapter(adapter);
     }
 
+    /**
+     * Set text in the fragment like title, description, details, etc.
+     */
+    private void setPropertyText(View view){
+        // get text elements from the layout
+        TextView title = (TextView)view.findViewById(R.id.read_set_title);
+        TextView description = (TextView)view.findViewById(R.id.read_set_description);
+        TextView details = (TextView)view.findViewById(R.id.read_set_details);
+
+        // set text attributes to elements
+        title.setText(set.getTitle());
+        description.setText(set.getDescription());
+        // assemble string for details
+        String d = R.string.read_set_created + set.getCreatedString() + "  |  " +
+                set.nTerms() + R.string.read_set_nterms;
+        details.setText(d);
+    }
 }
