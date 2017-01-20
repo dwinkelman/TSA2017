@@ -66,8 +66,8 @@ public class ReadSetFragment extends ListFragment {
             values = DEFAULT_VALUES;
         }
 
-        // use array adapter to instantiate items
-        ListView listView = (ListView) getView().findViewById(R.id.read_set_fragment);
+        // use array adapter to instantiate items++++
+        ListView listView = (ListView) getView().findViewById(R.id.read_set_listview);
         final ArrayList<String[]> list = new ArrayList<String[]>();
         for (String[] val : values) {
             list.add(val);

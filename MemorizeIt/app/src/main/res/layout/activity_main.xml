@@ -7,13 +7,18 @@
     android:padding="@dimen/activity_padding"
     tools:context="com.dwinkelman.memorizeit.MainActivity">
 
-    <fragment
+    <!--<fragment
         android:id="@+id/read_set_fragment"
+        android:name="com.dwinkelman.memorizeit.ReadSetFragment"
+        tools:layout="@layout/fragment_read_set"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        class="com.dwinkelman.memorizeit.ReadSetFragment"
-        tools:layout="@layout/fragment_read_set">
+        android:layout_height="wrap_content">
 
-    </fragment>
+    </fragment>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World"/>
 
 </RelativeLayout>
