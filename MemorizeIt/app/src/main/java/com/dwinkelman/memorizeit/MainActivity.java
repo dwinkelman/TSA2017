@@ -1,21 +1,19 @@
 package com.dwinkelman.memorizeit;
 
-import android.app.Fragment;
-import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements ListSetsFragment.Callbacks {
+public class MainActivity extends FragmentActivity implements ListSetsFragment.ListSetsListeners {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d("MainActivity", "The app worked.");
 
         if(findViewById(R.id.fragment_container) != null){
             if(savedInstanceState != null){
@@ -39,7 +37,16 @@ public class MainActivity extends FragmentActivity implements ListSetsFragment.C
     }
 
     @Override
-    public void onListSetsItemClick(Set set){
+    public void gotoReadSet(Set set) {
+        // make a new fragment
+        ReadSetFragment readSetFragment = ReadSetFragment.newInstance(set);
 
+        // replace the old fragment with the new one
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragment_container, readSetFragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

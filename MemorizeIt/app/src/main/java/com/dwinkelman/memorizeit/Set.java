@@ -4,6 +4,7 @@ package com.dwinkelman.memorizeit;
  * Created by Daniel on 1/20/2017.
  */
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,10 +12,10 @@ import java.util.Date;
  * The methods currently implemented are only placeholders. They wil be replaced with legitimate
  * methods once SQLite is implemented. For now, they are defined for compatibility with the display.
  */
-public class Set {
-    String DEFAULT_TITLE = "My Set";
-    String DEFAULT_DESCRIPTION = "My new set that I just created.";
-    String[][] DEFAULT_VALUES = {
+public class Set implements Serializable {
+    private String DEFAULT_TITLE = "My Set";
+    private String DEFAULT_DESCRIPTION = "My new set that I just created.";
+    private String[][] DEFAULT_VALUES = {
             {"destacarse", "to stand out"},
             {"amenazar", "to threaten"},
             {"el rostro", "face"},
@@ -22,10 +23,10 @@ public class Set {
             {"la pelota", "ball"}
     };
 
-    String title;
-    String description;
-    Date created;
-    String[][] values;
+    private String title;
+    private String description;
+    private Date created;
+    private String[][] values;
 
     public Set(){
         title = DEFAULT_TITLE;

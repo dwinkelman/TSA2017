@@ -4,12 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:focusable="false"
+    android:clickable="false"
+    android:focusableInTouchMode="false"
+    android:descendantFocusability="blocksDescendants"
     android:padding="@dimen/tiny_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="false"
+        android:clickable="false"
+        android:focusableInTouchMode="false">
 
         <TextView
             android:id="@+id/listset_item_title"
@@ -17,6 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="fill_vertical"
             android:layout_weight="1"
+            android:focusable="false"
+            android:clickable="false"
+            android:focusableInTouchMode="false"
             android:textSize="@dimen/title_text_size"
             android:maxLines="2"
             android:ellipsize="end"
@@ -30,6 +39,9 @@
             android:gravity="end"
             android:layout_marginEnd="@dimen/small_padding"
             android:layout_marginRight="@dimen/small_padding"
+            android:focusable="false"
+            android:clickable="false"
+            android:focusableInTouchMode="false"
             android:textSize="@dimen/detail_text_size"
             android:maxLines="2"
             android:text="Created on 1/20/2017\n5 Terms"/>
@@ -40,6 +52,9 @@
         android:id="@+id/listset_item_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="false"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
         android:textSize="@dimen/large_detail_text_size"
         android:maxLines="2"
         android:ellipsize="end"
