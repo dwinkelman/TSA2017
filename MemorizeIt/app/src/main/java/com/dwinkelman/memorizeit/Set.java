@@ -4,18 +4,20 @@ package com.dwinkelman.memorizeit;
  * Created by Daniel on 1/20/2017.
  */
 
+import android.content.Context;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Probably will inherit directly from a SQLite row for simplicity.
- * The methods currently implemented are only placeholders. They wil be replaced with legitimate
- * methods once SQLite is implemented. For now, they are defined for compatibility with the display.
+ * An interface with the SQLite database on the device to make information synchronization and
+ * access easier.
  */
 public class Set implements Serializable {
+    // default values
     private String DEFAULT_TITLE = "My Set";
     private String DEFAULT_DESCRIPTION = "My new set that I just created.";
-    private String[][] DEFAULT_VALUES = {
+    private Card[] DEFAULT_VALUES = {
             {"destacarse", "to stand out"},
             {"amenazar", "to threaten"},
             {"el rostro", "face"},
@@ -23,18 +25,44 @@ public class Set implements Serializable {
             {"la pelota", "ball"}
     };
 
+    // data storage
     private String title;
     private String description;
     private Date created;
-    private String[][] values;
+    private Card[] values;
 
-    public Set(){
+    // database interfacing
+    private Context context;
+    private SetsDatabase db;
+
+    /**
+     * Constructor that sets all class variables to their default values.
+     */
+    public void defaultConstructor(){
         title = DEFAULT_TITLE;
         description = DEFAULT_DESCRIPTION;
         values = DEFAULT_VALUES;
         created = new Date();
     }
 
+    /**
+     * Constructor that uses dynamic accessors to set class variables.
+     */
+    public void accessorConstructor(){
+
+    }
+
+    // constructors
+    public Set(){
+
+    }
+
+    public Set(Context context){
+        this.context = context;
+        this.db = new SetsDatabase(context);
+    }
+
+    // dynamic accessors
     public String getTitle(){
         return title;
     }
@@ -44,10 +72,10 @@ public class Set implements Serializable {
     public Date getCreated(){
         return created;
     }
-    public String[][] getValues(){
+    public Card[] getValues(){
         return values;
     }
-    public String[] getCard(int index){
+    public Card getCard(int index){
         return values[index];
     }
     public String getValue(int cardIndex, int valueIndex){
@@ -55,5 +83,25 @@ public class Set implements Serializable {
     }
     public int nTerms(){
         return values.length;
+    }
+
+    // dynamic assigners
+    public void setTitle(String title){
+
+    }
+    public void setDescription(String description){
+
+    }
+    public void setCreated(Date createdDate){
+
+    }
+    public void setValues(String[][] values){
+
+    }
+    public void setCard(String[] values){
+
+    }
+    public void setValue(String value) {
+
     }
 }
