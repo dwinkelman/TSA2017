@@ -6,6 +6,7 @@ package com.dwinkelman.memorizeit;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
@@ -23,6 +24,8 @@ public class SetsDatabase extends SQLiteOpenHelper {
     // !!!TODO: DO NOT TOUCH ANY NAMES IN THIS CLASS!!!
     private static final String DATABASE_NAME = "MemorizeItSets";
     private static final int DATABASE_VERSION = 1;
+
+    private static final String VALUE_DELIMITER = "|";
 
     // table and column SQLite names
     public static final String
@@ -59,6 +62,7 @@ public class SetsDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(QUERY_CREATE_SET_TABLE);
+        db.execSQL(QUERY_CREATE_CARDS_TABLE);
     }
 
     @Override
@@ -97,25 +101,38 @@ public class SetsDatabase extends SQLiteOpenHelper {
         String query = "DELETE FROM " + TABLE_CARDS + " WHERE " + COL_CARDID + "=" + id + ";";
         db.execSQL(query);
     }
-    public void updateValue(String table, String selectorCol, String selectorValue, String updateCol, String newValue){
+    public void setValue(String table, String idCol, long id, String updateCol, String newValue){
         SQLiteDatabase db = getWritableDatabase();
         String query = "UPDATE " + table + " SET " + updateCol + "=`" + newValue
-                + "` WHERE " + selectorCol + "=`" + selectorValue + "`;";
+                + "` WHERE " + idCol + "=" + id + ";";
         db.execSQL(query);
     }
-    public void getValue(String table, String selectorCol, String selectorValue, String selectCol){
+    public void setValue(String table, String idCol, long id, String updateCol, long newValue){
+        setValue(table, idCol, id, updateCol, Long.toString(newValue));
+    }
+    private Cursor getCursor(String table, String idCol, long id, String selectCol){
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT " + selectCol + " FROM " + table
-                + " WHERE " + selectorCol + "=`" + selectorValue + "`;";
-        db.execSQL(query);
+                + " WHERE " + idCol + "=" + id + ";";
+        return db.rawQuery(query, null);
+    }
+    public String getStringValue(String table, String idCol, long id, String selectCol){
+        Cursor c = getCursor(table, idCol, id, selectCol);
+        c.moveToNext();
+        return c.getString(c.getColumnIndex(selectCol));
+    }
+    public long getIntValue(String table, String idCol, long id, String selectCol){
+        Cursor c = getCursor(table, idCol, id, selectCol);
+        c.moveToNext();
+        return c.getLong(c.getColumnIndex(selectCol));
     }
 
 
     public static String encodeCard(String[] card){
-        return TextUtils.join("|", card);
+        return TextUtils.join(VALUE_DELIMITER, card);
     }
     public static String[] decodeCard(String encoded){
-        return TextUtils.split("|", encoded);
+        return TextUtils.split(VALUE_DELIMITER, encoded);
     }
     public static long encodeDate(Date date){
         return date.getTime() / 1000;

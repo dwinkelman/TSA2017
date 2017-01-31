@@ -1,6 +1,5 @@
 package com.dwinkelman.memorizeit;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,9 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -96,7 +92,7 @@ public class ReadSetFragment extends ListFragment {
      * Set up the array adapter so that it sends values into the list designated as android.R.id.list.
      */
     private void attachArrayAdapter(){
-        final ArrayAdapters.ReadSetAdapter adapter = new ArrayAdapters.ReadSetAdapter(getActivity(), set.getValues());
+        final ArrayAdapters.ReadSetAdapter adapter = new ArrayAdapters.ReadSetAdapter(getActivity(), set.getCards());
         setListAdapter(adapter);
     }
 

@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/vertical_spacing"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    android:divider="@drawable/vertical_layout_divider"
+    tools:context="com.dwinkelman.memorizeit.NewSetFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/title_text_size"
+        android:text="@string/newset_title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/darkLine"/>
+
+    <EditText
+        android:id="@+id/newset_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords"
+        android:text="@string/newset_input_title"/>
+
+    <EditText
+        android:id="@+id/newset_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences"
+        android:text="@string/newset_input_description"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/newset_input_submit"/>
+
+</LinearLayout>

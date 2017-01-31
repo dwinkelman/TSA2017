@@ -6,6 +6,8 @@
 
     <string name="listsets_title">My Sets</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="newset_title">New Set</string>
+    <string name="newset_input_title">Set Name</string>
+    <string name="newset_input_description">Brief Description</string>
+    <string name="newset_input_submit">Create</string>
 </resources>
