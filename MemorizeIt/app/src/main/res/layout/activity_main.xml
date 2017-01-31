@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dwinkelman.memorizeit.MainActivity">
+
+    <!--Fragment can be good for debugging individual fragments. Simple
+    programmatic appending can miss things-->
+    <!--<fragment
+        android:id="@+id/read_set_fragment"
+        android:name="com.dwinkelman.memorizeit.ListSetsFragment"
+        tools:layout="@layout/fragment_list_sets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </fragment>-->
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Memorize It!</string>
+
+    <string name="read_set_created">Created on</string>
+    <string name="read_set_nterms">Terms</string>
+
+    <string name="listsets_title">My Sets</string>
+
+    <string name="newset_title">New Set</string>
+    <string name="newset_input_title">Set Name</string>
+    <string name="newset_input_description">Brief Description</string>
+    <string name="newset_input_submit">Create</string>
+</resources>
